@@ -67,52 +67,54 @@ function App() {
     }, []);
 
     return (
-      <div>
-          <h1>Technical Task</h1>
-          <div>
-              <label>Number of Textboxes: </label>
-              <input style={{ margin: 10}} type="number" value={numTextboxes} onChange={e => setNumTextboxes(e.target.value)} />
-              <button style={{ backgroundColor: 'blue', margin: 10, padding: 10, borderRadius: 5, color: 'white' }} onClick={handleAddTextboxes}>Add Textbox</button>
-          </div>
-          <div>
-              <label>
-                  <input
-                      type="checkbox"
-                      checked={allChecked}
-                      onChange={e => handleAllCheckChange(e.target.checked)}
-                  />
-                  <span>All Check</span>
-              </label>
-          </div>
-          <div>
-              {textboxes.map((tb, index) => (
-                  <div key={index}>
-                      <input
-                          type="number"
-                          value={tb.value}
-                          onChange={e => handleInputChange(index, e.target.value)}
-                      />
-                      <input
-                          type="checkbox"
-                          checked={tb.checked}
-                          onChange={e => handleCheckboxChange(index, e.target.checked)}
-                          style={{ backgroundColor: tb.checked ? 'green' : '' }}
-                      />
-                  </div>
-              ))}
-          </div>
-          <button onClick={handleSaveData}>Save Data</button>
-
-          <p>Number of selected items: {selectedCount}</p>
-          <ul>
-              {data.map(entry => (
-                  <li key={entry.id}>
-                      {entry.positions.length ? `Positions: ${entry.positions}` : 'All items selected'}, Total: {entry.total}
-                  </li>
-              ))}
-          </ul>
-      </div>
-  );
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <h1 style={{ marginBottom: 20 }}>Technical Task</h1>
+            <div style={{ marginBottom: 20 }}>
+                <label style={{ marginRight: 10 }}>Number of Textboxes: </label>
+                <input type="number" value={numTextboxes} onChange={e => setNumTextboxes(e.target.value)} style={{ padding: 10, borderRadius: 5, border: '1px solid #ccc' }} />
+                <button style={{ backgroundColor: 'blue', marginLeft: 10, padding: '10px 20px', borderRadius: 5, color: 'white', border: 'none', cursor: 'pointer' }} onClick={handleAddTextboxes}>Add Textbox</button>
+            </div>
+            <div style={{ marginBottom: 20 }}>
+                <label style={{ marginRight: 10 }}>
+                    <input
+                        type="checkbox"
+                        checked={allChecked}
+                        onChange={e => handleAllCheckChange(e.target.checked)}
+                    />
+                    <span style={{ marginLeft: 5 }}>All Check</span>
+                </label>
+            </div>
+            <div>
+                {textboxes.map((tb, index) => (
+                    <div key={index} style={{ marginBottom: 10 }}>
+                        <input
+                            type="number"
+                            value={tb.value}
+                            onChange={e => handleInputChange(index, e.target.value)}
+                            style={{ padding: 10, borderRadius: 5, border: '1px solid #ccc' }}
+                        />
+                        <input
+                            type="checkbox"
+                            checked={tb.checked}
+                            onChange={e => handleCheckboxChange(index, e.target.checked)}
+                            style={{ marginLeft: 10, cursor: 'pointer', backgroundColor: tb.checked ? 'green' : '', borderRadius: '50%', width: 20, height: 20 }}
+                        />
+                    </div>
+                ))}
+            </div>
+            <button style={{ backgroundColor: '#4CAF50', padding: '10px 20px', borderRadius: 5, color: 'white', border: 'none', cursor: 'pointer', marginTop: 20 }} onClick={handleSaveData}>Save Data</button>
+    
+            <p style={{ marginTop: 20 }}>Number of selected items: {selectedCount}</p>
+            <ul>
+                {data.map(entry => (
+                    <li key={entry.id}>
+                        {entry.positions.length ? `Positions: ${entry.positions}` : 'All items selected'}, Total: {entry.total}
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+    
 }  
 
 export default App;
