@@ -53,12 +53,12 @@ function App() {
             positions = selectedTextboxes.map(tb => tb.id);
         }
 
-        await axios.post('/backend/src/save', { positions, total });
+        await axios.post('http://localhost:5000/save', { positions, total });
         fetchData();
     };
 
     const fetchData = async () => {
-        const response = await axios.get('/backend/src/retrieve');
+        const response = await axios.get('http://localhost:5000/retrieve');
         setData(response.data);
     };
 
