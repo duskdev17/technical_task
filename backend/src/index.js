@@ -9,7 +9,7 @@ const port = 5000;
 app.use(bodyParser.json());
 app.use(cors());
 
-app.post('/src/save', (req, res) => {
+app.post('/backend/src/save', (req, res) => {
     const { positions, total } = req.body;
     db.run("INSERT INTO data (positions, total) VALUES (?, ?)", [positions.join(','), total], function (err) {
         if (err) {
@@ -19,7 +19,7 @@ app.post('/src/save', (req, res) => {
     });
 });
 
-app.get('/src/retrieve', (req, res) => {
+app.get('/backend/src/retrieve', (req, res) => {
     db.all("SELECT * FROM data", [], (err, rows) => {
         if (err) {
             return res.status(500).json({ error: err.message });
